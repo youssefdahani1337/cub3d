@@ -6,11 +6,17 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:36:30 by yodahani          #+#    #+#             */
-/*   Updated: 2022/11/10 14:58:56 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/17 08:30:28 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static	void	error_print(void)
+{
+	printf("Invalid number");
+	exit(1);
+}
 
 int	ft_atoi(const char *str)
 {
@@ -34,5 +40,7 @@ int	ft_atoi(const char *str)
 			return (-1 * (sign > 0));
 		t = result;
 	}
+	if (str[i])
+		error_print();
 	return (result * sign);
 }

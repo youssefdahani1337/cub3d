@@ -6,17 +6,25 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 11:36:01 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/16 11:50:37 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:32:22 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/utils.h"
 
-void	check_map_name(char *arg)
+int	open_file(const char *arg)
 {
+	int	fd;
+
 	if (ft_strlen(arg) <= 4)
 		printerror("Invalid name map", arg);
-	arg = arg + (ft_strlen(arg) - 4);
-	if (ft_strncmp(".cub", arg, 4) != 0)
+	if (ft_strncmp(".cub", arg + (ft_strlen(arg) - 4), 4) != 0)
 		printerror("Inavlid file extension", arg);
+	fd = open(arg, O_RDONLY);
+	if (fd == -1)
+	{
+		perror("Error\n");
+		exit(1);
+	}
+	return (fd);
 }

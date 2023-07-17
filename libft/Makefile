@@ -6,13 +6,15 @@
 #    By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/20 16:02:51 by yodahani          #+#    #+#              #
-#    Updated: 2022/10/22 22:35:53 by yodahani         ###   ########.fr        #
+#    Updated: 2023/07/16 15:19:23 by yodahani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 CC = cc
 CFLAGS =  -Wall -Wextra -Werror
+GNL =	get_next_line_utils.c \
+		get_next_line.c
 
 SRC =	ft_atoi.c \
 		ft_bzero.c \
@@ -59,8 +61,8 @@ SRC_bonus = ft_lstadd_back_bonus.c \
 			ft_lstnew_bonus.c \
 			ft_lstsize_bonus.c \
 
-OBJ= $(SRC:.c=.o)
-OBJ_bonus = $(SRC_bonus:.c=.o)
+OBJ= $(SRC:.c=.o) $(GNL:.c=.o)
+OBJ_bonus = $(SRC_bonus:.c=.o) 
 NAME = libft.a
 
 all: $(NAME)

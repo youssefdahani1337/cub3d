@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:55:16 by yodahani          #+#    #+#             */
-/*   Updated: 2022/10/23 14:44:42 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/16 15:18:10 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include<stdlib.h>
 # include<unistd.h>
+# include "get_next_line.h"
 
 typedef struct s_list
 {
