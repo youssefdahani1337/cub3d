@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printerror.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhn <dhn@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 08:10:04 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/16 11:53:07 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/18 11:50:28 by dhn              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	printerror(const char *msg, const char *sp)
 {
 	printf("Error:\n %s", msg);
-	if (sp || *sp)
+	if (sp && *sp)
 		printf(": %s", sp);
 	printf("\n");
 	exit(1);

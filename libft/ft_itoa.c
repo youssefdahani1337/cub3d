@@ -50,13 +50,9 @@ char	*ft_itoa(int n)
 {
 	char	*str;
 	int		count;
-	int		i;
-	int		div;
 	long	num;
 
 	num = n;
-	div = 10;
-	i = 0;
 	count = ft_countnum(num);
 	str = (char *) malloc(sizeof(char) * (count + 1));
 	if (!str)

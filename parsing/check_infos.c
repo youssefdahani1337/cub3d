@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_infos.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhn <dhn@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:14:18 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/17 07:40:58 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/18 11:31:41 by dhn              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,17 @@ void	check_firsts_infos(int fd, t_game *game)
 	line = get_next_line(fd);
 	if (!line)
 		printerror("Empty Map!!", NULL);
+	line = substr_line(line);
 	while (line)
 	{
-		if (line && *line == '\n')
+		if (*line == '\n')
 		{
 			free(line);
 			continue ;
-		}	
+		}
 		add_infos(game, line);
+		line = get_next_line(fd);
+		line = substr_line(line);
 	}
 }
 
@@ -36,13 +39,13 @@ void	add_infos(t_game *game, char *line)
 
 	lexer = init_lexer(line);
 	skip_whitespace(lexer);
-	if (lexer->c != '\0')
-		printerror("Firsts information", "line with multiple space");
+	if (lexer->c == '\0')
+		printerror("Firsts information line with multiple space", lexer->src);
 	if (ft_strchr("NSWE", lexer->c))
 		add_textures(game, lexer);
 	else if (ft_strchr("FC", lexer->c))
-		add_color(game, line);
+		add_color(game, lexer);
 	else
 		printerror("Invalid firsts information", NULL);
-	free(line);
+	free_lexer(lexer);
 }

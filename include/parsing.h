@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dhn <dhn@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 11:29:59 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/17 10:29:03 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/18 11:16:36 by dhn              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	lexer_iter(t_lexer *lexer);
 void	skip_whitespace(t_lexer *lexer);
 void	free_lexer(t_lexer *lexer);
 
-void	add_color(t_game *game, char *line);
-void	set_color(int *color, t_lexer *lexer);
+void	add_color(t_game *game, t_lexer *lexer);
+void	set_color(int color[], t_lexer *lexer);
 void	get_color(int *color, char *nb, int i);
 
 void	add_textures(t_game *game, t_lexer *lexer);
