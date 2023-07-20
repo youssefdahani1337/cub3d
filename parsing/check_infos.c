@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:14:18 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/17 07:40:58 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:32:03 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 void	check_firsts_infos(int fd, t_game *game)
 {
 	char	*line;
+	int		i;
 
 	line = get_next_line(fd);
 	if (!line)
 		printerror("Empty Map!!", NULL);
-	while (line)
+	i = 0;
+	while (line && i < 5)
 	{
 		if (line && *line == '\n')
 		{
@@ -27,6 +29,7 @@ void	check_firsts_infos(int fd, t_game *game)
 			continue ;
 		}	
 		add_infos(game, line);
+		i ++;
 	}
 }
 

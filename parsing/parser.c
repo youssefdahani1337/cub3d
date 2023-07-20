@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 11:32:55 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/17 07:54:37 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:32:47 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_game	*parsing(char *arg)
 	fd = open_file(arg);
 	game = init_game();
 	check_firsts_infos(fd, game);
+	parse_map(fd, game);
 	return (NULL);
 }
 
