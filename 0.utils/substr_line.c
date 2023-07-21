@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   substr_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 21:36:49 by yodahani          #+#    #+#             */
-/*   Updated: 2022/11/10 15:06:40 by yodahani         ###   ########.fr       */
+/*   Created: 2023/07/18 10:57:41 by dhn               #+#    #+#             */
+/*   Updated: 2023/07/20 08:17:59 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/utils.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*substr_line(char *line)
 {
-	char	*src1;
-	char	*dst1;
+    char    *str;
+    int     i;
 
-	src1 = (char *) src;
-	dst1 = (char *) dst;
-	if (dst > src)
-	{
-		while (len --)
-		{
-			dst1[len] = src1[len];
-		}
-		return (dst);
-	}
-	return (ft_memcpy(dst, src, len));
+    i = 0;
+    str = NULL;
+    if (!line)
+        return (NULL);
+    while (line[i] && line[i] != '\n')
+        str = join_char(str, line[i ++]);
+    free(line);
+    return (str);
 }

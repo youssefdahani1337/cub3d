@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 16:50:41 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/17 07:36:46 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/21 11:50:05 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@ void	add_textures(t_game *game, t_lexer *lexer)
 	skip_whitespace(lexer);
 	if (!lexer->c)
 		printerror("Path not found", NULL);
-	path = ft_strdup(lexer->src + lexer->i);
+	path = lexer->src + lexer->i;
+	if (ft_strlen(path) <= 4)
+		printerror("Invalid texture path", path);
+	if (ft_strncmp(".xpm", path + ft_strlen(path) - 4, 4) != 0)
+		printerror("Invalid texture extension", path);
 	get_textures(game, str, path);
-	free_lexer(lexer);
 }
 
 char	*join_dir(t_lexer *lexer)
@@ -34,9 +37,10 @@ char	*join_dir(t_lexer *lexer)
 
 	str = join_char(NULL, lexer->c);
 	lexer_iter(lexer);
-	str = join_char(str, lexer->c);
 	if (!lexer->c || !ft_strchr("OAE", lexer->c))
-		printerror("Invalid texture ", str);
+		printerror("Invalid texture ", NULL);
+	str = join_char(str, lexer->c);
+	lexer_iter(lexer);
 	return (str);
 }
 
@@ -52,9 +56,12 @@ void	get_textures(t_game *game, char *type, char *path)
 		set_path(&game->txt_ea, path, type);
 }
 
-void	set_path(char **path, char *str, char *type)
+void	set_path(void **texture, char *str, char *type)
 {
-	if (*path)
+	int	h;
+	int	w;
+
+	if (*texture)
 		printerror("texture already set for ", type);
-	*path = str;
+	*texture = mlx_xpm_file_to_image(str, str, &h, &w);
 }

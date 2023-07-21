@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:14:18 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/18 14:32:03 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:57:25 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,56 @@ void	check_firsts_infos(int fd, t_game *game)
 	char	*line;
 	int		i;
 
+	i = 0;
 	line = get_next_line(fd);
 	if (!line)
 		printerror("Empty Map!!", NULL);
-	i = 0;
-	while (line && i < 5)
+	while (line && i < 6)
 	{
-		if (line && *line == '\n')
+		if (!*line)
 		{
 			free(line);
-			continue ;
-		}	
-		add_infos(game, line);
-		i ++;
+			break ;
+		}
+		else if (*line == '\n')
+			free(line);
+		else if (++i)
+			add_infos(game, line);
+		line = get_next_line(fd);
 	}
+	check_fill_infos(game);
 }
 
 void	add_infos(t_game *game, char *line)
 {
 	t_lexer	*lexer;
 
+	line = substr_line(line);
 	lexer = init_lexer(line);
 	skip_whitespace(lexer);
-	if (lexer->c != '\0')
-		printerror("Firsts information", "line with multiple space");
+	if (lexer->c == '\0')
+		printerror("Firsts information line with multiple space", lexer->src);
 	if (ft_strchr("NSWE", lexer->c))
 		add_textures(game, lexer);
 	else if (ft_strchr("FC", lexer->c))
-		add_color(game, line);
+		add_color(game, lexer);
 	else
 		printerror("Invalid firsts information", NULL);
-	free(line);
+	free_lexer(lexer);
+}
+
+void	check_fill_infos(t_game *game)
+{
+	if (game->c_color[0] == -1)
+		printerror("Color of celling not set", NULL);
+	if (game->f_color[0] == -1)
+		printerror("Color of floor not set", NULL);
+	if (game->txt_ea == NULL)
+		printerror("texture of EA not set", NULL);
+	if (game->txt_no == NULL)
+		printerror("texture NO not set", NULL);
+	if (game->txt_so == NULL)
+		printerror("texture of SO not set", NULL);
+	if (game->txt_we == NULL)
+		printerror("texture of WE not set", NULL);
 }

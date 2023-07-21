@@ -68,7 +68,7 @@ char	*ft_read(int fd, char **str)
 
 char	*get_next_line(int fd)
 {
-	char static	*str;
+	static char	*str;
 
 	if (fd == -1 || BUFFER_SIZE <= 0)
 		return (0);

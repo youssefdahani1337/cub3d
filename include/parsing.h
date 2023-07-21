@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 11:29:59 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/17 10:29:03 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/21 11:48:58 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	lexer_iter(t_lexer *lexer);
 void	skip_whitespace(t_lexer *lexer);
 void	free_lexer(t_lexer *lexer);
 
-void	add_color(t_game *game, char *line);
-void	set_color(int *color, t_lexer *lexer);
+void	add_color(t_game *game, t_lexer *lexer);
+void	set_color(int color[], t_lexer *lexer);
 void	get_color(int *color, char *nb, int i);
 
 void	add_textures(t_game *game, t_lexer *lexer);
 char	*join_dir(t_lexer *lexer);
 void	get_textures(t_game *game, char *type, char *path);
-void	set_path(char **path, char *str, char *type);
+void	set_path(void **path, char *str, char *type);
 
 t_game	*parsing(char *arg);
 t_game	*init_game(void);
@@ -42,5 +42,24 @@ int		open_file(const char *arg);
 
 void	check_firsts_infos(int fd, t_game *game);
 void	add_infos(t_game *game, char *line);
+void	check_fill_infos(t_game *game);
+
+//map 
+
+
+void	parse_map(int fd, t_game *game);
+void	check_char(char *str, int *check);
+void	check_charmap(t_list *list);
+void	alloc_map(t_game *game, t_list *list);
+t_list	*fill_list(int fd);
+void	fill_map(t_game *game, t_list *list);
+
+void	check_map(t_game *game);
+void	check_walls(t_game *game);
+void	dfs(t_game *game, int x, int y);
+
+size_t	get_max(t_list *list);
+t_pos	get_pos(t_game *game, char c);
+t_game	*copy_game(t_game *game);
 
 #endif

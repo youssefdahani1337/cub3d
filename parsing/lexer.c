@@ -35,7 +35,7 @@ void	lexer_iter(t_lexer *lexer)
 
 void	skip_whitespace(t_lexer *lexer)
 {
-	while (ft_strchr("\n", lexer->c))
+	while (lexer->c && ft_strchr(" \n", lexer->c))
 		lexer_iter(lexer);
 }
 void	free_lexer(t_lexer *lexer)

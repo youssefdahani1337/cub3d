@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 21:36:49 by yodahani          #+#    #+#             */
-/*   Updated: 2022/11/10 15:06:40 by yodahani         ###   ########.fr       */
+/*   Created: 2023/07/21 11:53:01 by yodahani          #+#    #+#             */
+/*   Updated: 2023/07/21 11:56:24 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include  "../include/cub3D.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+t_game	*init_game(void)
 {
-	char	*src1;
-	char	*dst1;
+	
+}
 
-	src1 = (char *) src;
-	dst1 = (char *) dst;
-	if (dst > src)
-	{
-		while (len --)
-		{
-			dst1[len] = src1[len];
-		}
-		return (dst);
-	}
-	return (ft_memcpy(dst, src, len));
+t_game	*init_attr(vod)
+{
+	t_game	*game;
+
+	game = ft_malloc(1, sizeof(t_game));
+	game->txt_ea = NULL;
+	game->txt_no = NULL;
+	game->txt_so = NULL;
+	game->txt_we = NULL;
+	game->c_color[0] = -1;
+	game->c_color[1] = -1;
+	game->c_color[2] = -1;
+	game->f_color[0] = -1;
+	game->f_color[1] = -1;
+	game->f_color[2] = -1;
+	return (game);
 }

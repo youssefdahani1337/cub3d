@@ -6,18 +6,16 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 07:37:36 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/17 10:29:11 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/20 09:13:06 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/parsing.h"
 
-void	add_color(t_game *game, char *line)
+void	add_color(t_game *game, t_lexer *lexer)
 {
 	char	c;
-	t_lexer	*lexer;
 
-	lexer = init_lexer(line);
 	c = lexer->c;
 	lexer_iter(lexer);
 	if (lexer->c != ' ')
@@ -31,29 +29,35 @@ void	add_color(t_game *game, char *line)
 		set_color(game->c_color, lexer);
 }
 
-void	set_color(int *color, t_lexer *lexer)
+void	set_color(int color[], t_lexer *lexer)
 {
 	int		i;
 	int		j;
 	char	*nb;
 
-	nb = NULL;
 	i = -1;
-	while (lexer->c && ++i < 3)
-	{	
+	while (++i < 3 && lexer->c)
+	{
+		skip_whitespace(lexer);
+		nb = NULL;
 		j = -1;
-		while (!ft_strchr(",", lexer->c) && ++j < 3)
+		while (!ft_strchr(",", lexer->c) && ft_isdigit(lexer->c) && ++j < 3)
 		{
 			nb = join_char(nb, lexer->c);
 			lexer_iter(lexer);
 		}
+		skip_whitespace(lexer);
 		if ((i < 2 && lexer->c != ',') || (i == 2 && lexer->c))
 			printerror("Invalid color ", NULL);
+		lexer_iter(lexer);
 		get_color(color, nb, i);
+		free(nb);
 	}
+	if (i != 3)
+		printerror("Invalid color", NULL);
 }
 
-void	get_color(int *color, char *nb, int i)
+void	get_color(int color[], char *nb, int i)
 {
 	if (color[i] != -1)
 		printerror("color already set", NULL);
