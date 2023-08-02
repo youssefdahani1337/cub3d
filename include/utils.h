@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 08:13:14 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/21 10:29:22 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:31:23 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ char	*join_char(char *str, char c);
 char	*substr_line(char *line);
 void	print_infos(t_game *game);
 void	print_map(char **map, int x, int y);
+void	free_game(t_game *game);
 #endif

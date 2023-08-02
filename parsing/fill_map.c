@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:47:32 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/21 11:35:17 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/21 20:39:04 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ t_list	*fill_list(int fd)
 		ft_lstadd_back(&list, ft_lstnew(substr_line(line)));
 		line = get_next_line(fd);
 	}
-	ft_lstclear(&list, free);
 	return (list);
 }
 
@@ -54,6 +53,7 @@ void	fill_map(t_game *game, t_list *list)
 	char	*s;
 
 	j = 0;
+	alloc_map(game, list);
 	while (list)
 	{
 		i = -1;

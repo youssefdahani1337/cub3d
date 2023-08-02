@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:14:18 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/20 10:57:25 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/21 20:37:01 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	check_firsts_infos(int fd, t_game *game)
 			free(line);
 		else if (++i)
 			add_infos(game, line);
-		line = get_next_line(fd);
+		if (i < 6)
+			line = get_next_line(fd);
 	}
 	check_fill_infos(game);
 }
@@ -57,9 +58,9 @@ void	add_infos(t_game *game, char *line)
 
 void	check_fill_infos(t_game *game)
 {
-	if (game->c_color[0] == -1)
+	if (game->c_color == -1)
 		printerror("Color of celling not set", NULL);
-	if (game->f_color[0] == -1)
+	if (game->f_color == -1)
 		printerror("Color of floor not set", NULL);
 	if (game->txt_ea == NULL)
 		printerror("texture of EA not set", NULL);

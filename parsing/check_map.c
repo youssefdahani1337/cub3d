@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 12:41:31 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/21 10:53:41 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/21 20:12:27 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	check_map(t_game *game)
 	game->p = get_pos(game, '\0');
 	game_copy = copy_game(game);
 	check_walls(game_copy);
-	print_infos(game_copy);
+	free_game(game_copy);
 }
 
 void	check_walls(t_game *game)
 {
 	t_pos	p;
-	
+
 	dfs(game, game->p.x, game->p.y);
 	p = get_pos(game, '0');
 	while (p.x != -1)
@@ -33,13 +33,10 @@ void	check_walls(t_game *game)
 		dfs(game, p.x, p.y);
 		p = get_pos(game, '0');
 	}
-	print_map(game->map, -1, -1);
 }
 
 void	dfs(t_game *game, int x, int y)
 {
-	//usleep(1000000);
-	//print_map(game->map, x, y);
 	if (x < 0 || y < 0 || x >= (int)game->r_len || y >= (int) game->c_len)
 	{
 		printf("x = %d, y = %d\n", x, y);

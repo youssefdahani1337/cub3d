@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 08:34:52 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/21 11:48:21 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/21 20:11:46 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	print_map(char **map, int x, int y)
 	int	i;
 	int	j;
 
-	system("clear");
 	i = 0;
 	while (map[i])
 	{
@@ -31,7 +30,7 @@ void	print_map(char **map, int x, int y)
 			j++;
 		}
 		printf("\n");
-		i++;
+		i ++;
 	}
 }
 
@@ -40,10 +39,8 @@ void	print_infos(t_game *game)
 	int	j;
 
 	j = 0;
-	printf("Celling color: %d %d %d\n", game->c_color[0],
-		game->c_color[1], game->c_color[2]);
-	printf("Floor color: %d %d %d\n", game->f_color[0],
-		game->f_color[1], game->f_color[2]);
+	printf("Celling color:  %d\n", game->c_color);
+	printf("Floor color:  %d\n", game->f_color);
 	printf("EA[%p]\n", game->txt_ea);
 	printf("NO[%p]\n", game->txt_no);
 	printf("SO[%p]\n", game->txt_so);

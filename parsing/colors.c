@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 07:37:36 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/20 09:13:06 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/21 20:22:33 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,44 +24,59 @@ void	add_color(t_game *game, t_lexer *lexer)
 	if (!lexer->c)
 		printerror("No color set", NULL);
 	if (c == 'F')
-		set_color(game->f_color, lexer);
+		set_color(&game->f_color, lexer);
 	if (c == 'C')
-		set_color(game->c_color, lexer);
+		set_color(&game->c_color, lexer);
 }
 
-void	set_color(int color[], t_lexer *lexer)
+void	set_color(int *color, t_lexer *lexer)
 {
 	int		i;
-	int		j;
 	char	*nb;
+	int		color_tmp[3];
 
 	i = -1;
+	if (*color != -1)
+		printerror("Color already set", NULL);
 	while (++i < 3 && lexer->c)
 	{
-		skip_whitespace(lexer);
-		nb = NULL;
-		j = -1;
-		while (!ft_strchr(",", lexer->c) && ft_isdigit(lexer->c) && ++j < 3)
-		{
-			nb = join_char(nb, lexer->c);
-			lexer_iter(lexer);
-		}
-		skip_whitespace(lexer);
+		nb = get_color_str(lexer);
 		if ((i < 2 && lexer->c != ',') || (i == 2 && lexer->c))
 			printerror("Invalid color ", NULL);
 		lexer_iter(lexer);
-		get_color(color, nb, i);
-		free(nb);
+		get_color(color_tmp, nb, i);
 	}
 	if (i != 3)
 		printerror("Invalid color", NULL);
+	*color = rgb_to_dec(color_tmp);
 }
 
 void	get_color(int color[], char *nb, int i)
 {
-	if (color[i] != -1)
-		printerror("color already set", NULL);
 	color[i] = ft_atoi(nb);
 	if (color[i] > 255 || (int)color[i] < 0)
 		printerror("RGB color must be between 0 and 255", NULL);
+	free(nb);
+}
+
+char	*get_color_str(t_lexer *lexer)
+{
+	char	*nb;
+	int		j;
+
+	j = -1;
+	nb = NULL;
+	skip_whitespace(lexer);
+	while (!ft_strchr(",", lexer->c) && ft_isdigit(lexer->c) && ++j < 3)
+	{
+		nb = join_char(nb, lexer->c);
+		lexer_iter(lexer);
+	}
+	skip_whitespace(lexer);
+	return (nb);
+}
+
+int	rgb_to_dec(int color[])
+{
+	return (color[0] << 16 | color[1] << 8 | color[2]);
 }

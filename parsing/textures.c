@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 16:50:41 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/21 11:50:05 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/21 21:32:09 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,12 @@ void	get_textures(t_game *game, char *type, char *path)
 		set_path(&game->txt_we, path, type);
 	else if (ft_strncmp("EA", type, 2) == 0)
 		set_path(&game->txt_ea, path, type);
+	free(type);
 }
 
 void	set_path(void **texture, char *str, char *type)
 {
-	int	h;
-	int	w;
-
 	if (*texture)
 		printerror("texture already set for ", type);
-	*texture = mlx_xpm_file_to_image(str, str, &h, &w);
+	*texture = ft_strdup(str);
 }

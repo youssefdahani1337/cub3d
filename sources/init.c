@@ -6,31 +6,38 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:53:01 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/21 11:56:24 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/07/21 21:45:55 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "../include/cub3D.h"
 
-t_game	*init_game(void)
+void	init_game(t_game *game)
 {
-	
+	game->mlx = mlx_init();
+	init_textures(game);
+	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "cub3D");
+	mlx_hook(game->win, 17, 0, ft_cross, game);
+	mlx_loop(game->mlx);
 }
 
-t_game	*init_attr(vod)
+void	init_textures(t_game *game)
 {
-	t_game	*game;
+	init_texture_fill(game, &game->txt_no);
+	init_texture_fill(game, &game->txt_so);
+	init_texture_fill(game, &game->txt_we);
+	init_texture_fill(game, &game->txt_ea);
+}
 
-	game = ft_malloc(1, sizeof(t_game));
-	game->txt_ea = NULL;
-	game->txt_no = NULL;
-	game->txt_so = NULL;
-	game->txt_we = NULL;
-	game->c_color[0] = -1;
-	game->c_color[1] = -1;
-	game->c_color[2] = -1;
-	game->f_color[0] = -1;
-	game->f_color[1] = -1;
-	game->f_color[2] = -1;
-	return (game);
+void	init_texture_fill(t_game *game, void **txt)
+{
+	char	*path;
+	int		w;
+	int		h;
+
+	path = *txt;
+	*txt = mlx_xpm_file_to_image(game->mlx, path, &w, &h);
+	if (!*txt)
+		printerror("Error while loading texture", NULL);
+	free(path);
 }
