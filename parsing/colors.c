@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 07:37:36 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/21 20:22:33 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/03 10:46:47 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	add_color(t_game *game, t_lexer *lexer)
 		set_color(&game->c_color, lexer);
 }
 
-void	set_color(int *color, t_lexer *lexer)
+void	set_color(long *color, t_lexer *lexer)
 {
 	int		i;
 	char	*nb;

@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:33:01 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/21 20:39:19 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/03 10:43:13 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	check_charmap(t_list *list)
 	check_p = 0;
 	while (list)
 	{
-		check_char(list->content, &check_p);
+		if (list->content)
+			check_char(list->content, &check_p);
 		list = list->next;
 	}
 	if (!check_p)

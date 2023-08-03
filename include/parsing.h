@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 11:29:59 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/21 21:32:20 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/03 10:47:28 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	skip_whitespace(t_lexer *lexer);
 void	free_lexer(t_lexer *lexer);
 
 void	add_color(t_game *game, t_lexer *lexer);
-void	set_color(int *color, t_lexer *lexer);
+void	set_color(long *color, t_lexer *lexer);
 void	get_color(int color[], char *nb, int i);
 char	*get_color_str(t_lexer *lexer);
 
@@ -41,7 +41,7 @@ char	*join_dir(t_lexer *lexer);
 void	get_textures(t_game *game, char *type, char *path);
 void	set_path(void **texture, char *str, char *type);
 
-t_game *parsing(char *arg);
+t_game	*parsing(char *arg);
 int		open_file(const char *arg);
 
 void	check_firsts_infos(int fd, t_game *game);
