@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 11:32:55 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/21 21:31:38 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/06 20:03:44 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ t_game	*init_attr(void)
 	t_game	*game;
 
 	game = ft_malloc(1, sizeof(t_game));
-	game->txt_ea = NULL;
-	game->txt_no = NULL;
-	game->txt_so = NULL;
-	game->txt_we = NULL;
-	game->c_color = -1;
-	game->f_color = -1;
+	game->txt.no.img = NULL;
+	game->txt.so.img = NULL;
+	game->txt.we.img = NULL;
+	game->txt.ea.img = NULL;
+	game->color.f = -1;
+	game->color.c = -1;
 	return (game);
 }

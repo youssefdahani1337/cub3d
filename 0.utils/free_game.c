@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:32:53 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/21 19:32:34 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/06 19:37:03 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,22 @@ void	free_game(t_game *game)
 	int	i;
 
 	i = 0;
-	if (game->map)
+	if (game->map.m)
 	{
-		while (game->map[i])
-			free(game->map[i++]);
-		free(game->map);
+		while (game->map.m[i])
+			free(game->map.m[i++]);
+		free(game->map.m);
 	}
-	if (game->txt_no)
-		free(game->txt_no);
-	if (game->txt_so)
-		free(game->txt_so);
-	if (game->txt_we)
-		free(game->txt_we);
-	if (game->txt_ea)
-		free(game->txt_ea);
-	if (game->txt_so)
-		free(game->txt_so);
-	if (game->mlx)
-		free(game->mlx);
-	if (game->win)
-		free(game->win);
+	if (game->txt.no.img)
+		free(game->txt.no.img);
+	if (game->txt.so.img)
+		free(game->txt.so.img);
+	if (game->txt.we.img)
+		free(game->txt.we.img);
+	if (game->txt.ea.img)
+		free(game->txt.ea.img);
+	if (game->mlx.mlx && game->mlx.win)
+		mlx_destroy_window(game->mlx.mlx, game->mlx.win);
+	
 	free(game);
 }

@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 12:41:31 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/21 20:12:27 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/06 19:46:08 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ void	check_walls(t_game *game)
 
 void	dfs(t_game *game, int x, int y)
 {
-	if (x < 0 || y < 0 || x >= (int)game->r_len || y >= (int) game->c_len)
+	if (x < 0 || y < 0 || x >= (int)game->map.r_len || y >= (int) game->map.c_len)
 	{
 		printf("x = %d, y = %d\n", x, y);
 		print_infos(game);
 		printerror("The map must be closed/surrounded by walls !!", NULL);
 	}
-	else if (game->map[x][y] == '1' || game->map[x][y] == '2')
+	else if (game->map.m[x][y] == '1' || game->map.m[x][y] == '2')
 		return ;
-	else if (game->map[x][y] == ' ')
+	else if (game->map.m[x][y] == ' ')
 		printerror("The map must be closed/surrounded by walls !!", NULL);
-	game->map[x][y] = '2';
+	game->map.m[x][y] = '2';
 	dfs(game, x, y - 1);
 	dfs(game, x, y + 1);
 	dfs(game, x - 1, y);

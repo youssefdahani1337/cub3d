@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 08:04:57 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/21 21:30:46 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/06 20:04:10 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	main(int ac, char **av)
 	
 	if (ac != 2)
 		printerror("Enter just 1 argument", NULL);
-	game  = parsing(av[1]);
+	game = parsing(av[1]);
 	init_game(game);
+	mlx_hook(game->mlx.win, 17, 0, ft_cross, game);
+	mlx_hook(game->mlx.win, 2, 0, ft_key, game);
+	mlx_loop(game->mlx.mlx);
 	return (0);
 }

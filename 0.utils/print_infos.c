@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 08:34:52 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/03 10:46:18 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/06 20:03:56 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,14 @@ void	print_infos(t_game *game)
 	int	j;
 
 	j = 0;
-	printf("Celling color:  %ld\n", game->c_color);
-	printf("Floor color:  %ld\n", game->f_color);
-	printf("EA[%p]\n", game->txt_ea);
-	printf("NO[%p]\n", game->txt_no);
-	printf("SO[%p]\n", game->txt_so);
-	printf("WE[%p]\n", game->txt_we);
-	print_map(game->map, -1, -1);
+	printf("Celling color:  %ld\n", game->color.c);
+	printf("Floor color:  %ld\n", game->color.f);
+	printf("texture NO:  %s\n", game->txt.no.img);
+	printf("texture SO:  %s\n", game->txt.so.img);
+	printf("texture WE:  %s\n", game->txt.we.img);
+	printf("texture EA:  %s\n", game->txt.ea.img);
+	printf("MAP len [%ld]\n", game->map.r_len);
+	printf("MAP width [%ld]\n", game->map.c_len);
+	
+	print_map(game->map.m, -1, -1);
 }

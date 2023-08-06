@@ -5,13 +5,13 @@ endef
 
 
 CC=cc
-CFLAGS=-Wall -Wextra -Werror #-fsanitize=address -g3 
+CFLAGS=-Wall -Wextra -Werror -fsanitize=address -g3 
 RM=rm -rf
 NAME=cub3D
 LIBFT=-Llibft -lft
 UTILS=printerror.c ft_malloc.c strjoin_char.c substr_line.c print_infos.c free_game.c
 PARS = parser.c check_name.c check_infos.c lexer.c textures.c colors.c parse_map.c map_addons.c fill_map.c check_map.c
-SRCS=cub3D.c init.c exit_btn.c
+SRCS=cub3D.c init.c exit_btn.c ft_key.c
 
 
 OBJS = $(call convert_to_objs , sources, $(SRCS)) \
@@ -23,6 +23,8 @@ all:libft $(NAME)
 $(NAME):$(OBJS)
 	@echo "Cub3D is compiling...."
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT)  -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+test:test.o
+	@$(CC) $(CFLAGS) test.c   -lmlx -framework OpenGL -framework AppKit -o test
 
 libft:
 	@$(MAKE) -C libft -s

@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 15:14:18 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/03 10:44:40 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/06 19:32:37 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,16 @@ void	add_infos(t_game *game, char *line)
 
 void	check_fill_infos(t_game *game)
 {
-	if (game->c_color == -1)
+	if (game->color.c == -1)
 		printerror("Color of celling not set", NULL);
-	if (game->f_color == -1)
+	if (game->color.f == -1)
 		printerror("Color of floor not set", NULL);
-	if (game->txt_ea == NULL)
+	if (game->txt.ea.img == NULL)
 		printerror("texture of EA not set", NULL);
-	if (game->txt_no == NULL)
-		printerror("texture NO not set", NULL);
-	if (game->txt_so == NULL)
+	if (game->txt.no.img == NULL)
+		printerror("texture of NO not set", NULL);
+	if (game->txt.so.img == NULL)
 		printerror("texture of SO not set", NULL);
-	if (game->txt_we == NULL)
+	if (game->txt.we.img == NULL)
 		printerror("texture of WE not set", NULL);
 }

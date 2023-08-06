@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:49:16 by yodahani          #+#    #+#             */
-/*   Updated: 2023/07/21 10:50:27 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/06 19:46:47 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ t_pos	get_pos(t_game *game, char c)
 	int			j;
 	char		**m;
 
-	m = game->map;
+	m = game->map.m;
 	j = -1;
-	while (++j < (int)game->r_len)
+	while (++j < (int)game->map.r_len)
 	{
 		i = -1;
-		while (++i < (int)game->c_len)
+		while (++i < (int)game->map.c_len)
 		{
 			if ((c && c == m[j][i]) || (!c && ft_strchr("WENS", m[j][i])))
 			{
@@ -63,13 +63,13 @@ t_game	*copy_game(t_game *game)
 	size_t		i;
 
 	copy_game = ft_malloc(1, sizeof(t_game));
-	copy_game->r_len = game->r_len;
-	copy_game->c_len = game->c_len;
-	copy_game->map = ft_malloc(game->r_len + 1, sizeof(char *));
+	copy_game->map.r_len = game->map.r_len;
+	copy_game->map.c_len = game->map.c_len;
+	copy_game->map.m = ft_malloc(game->map.r_len + 1, sizeof(char *));
 	i = -1;
-	while (++i < game->r_len)
-		copy_game->map[i] = ft_strdup(game->map[i]);
-	copy_game->map[i] = NULL;
+	while (++i < game->map.r_len)
+		copy_game->map.m[i] = ft_strdup(game->map.m[i]);
+	copy_game->map.m[i] = NULL;
 	copy_game->p = game->p;
 	return (copy_game);
 }

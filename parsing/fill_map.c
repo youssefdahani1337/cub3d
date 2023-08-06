@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 15:47:32 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/02 12:22:52 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/06 19:42:31 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	alloc_map(t_game *game, t_list *list)
 	size_t	i;
 
 	i = -1;
-	game->c_len = get_max(list);
-	game->r_len = ft_lstsize(list);
-	game->map = ft_malloc(game->r_len + 1, sizeof(char *));
-	while (++i < game->r_len)
+	game->map.c_len = get_max(list);
+	game->map.r_len = ft_lstsize(list);
+	game->map.m = ft_malloc(game->map.r_len + 1, sizeof(char *));
+	while (++i < game->map.r_len)
 	{
-		game->map[i] = ft_malloc(game->c_len + 1, sizeof(char));
-		ft_memset(game->map[i], ' ', game->c_len);
-		game->map[i][game->c_len] = '\0';
+		game->map.m[i] = ft_malloc(game->map.c_len + 1, sizeof(char));
+		ft_memset(game->map.m[i], ' ', game->map.c_len);
+		game->map.m[i][game->map.c_len] = '\0';
 	}
-	game->map[i] = NULL;
+	game->map.m[i] = NULL;
 }
 
 t_list	*fill_list(int fd)
@@ -63,7 +63,7 @@ void	fill_map(t_game *game, t_list *list)
 		if (s && *s)
 		{
 			while (s[++i])
-				game->map[j][i] = s[i];
+				game->map.m[j][i] = s[i];
 		}
 		list = list->next;
 		j++;

@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:33:01 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/03 10:43:13 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/06 19:51:13 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	check_char(char *str, int *check)
 			if (*check)
 				printerror("there is more than 1 palyer", NULL);
 			*check = 1;
-			printf("player = %c\n", str[i]);
 		}
 		else
 			printerror("invalid character !!", NULL);

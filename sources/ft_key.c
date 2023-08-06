@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_key.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yakhay <yakhay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 14:55:13 by yakhay            #+#    #+#             */
-/*   Updated: 2022/10/16 15:39:51 by yakhay           ###   ########.fr       */
+/*   Created: 2023/08/06 20:05:00 by yodahani          #+#    #+#             */
+/*   Updated: 2023/08/06 20:05:23 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/cub3D.h"
 
-void	ft_bzero(void *s, size_t n)
+int	ft_key(int key, t_game *game)
 {
-	char	*b;
-
-	b = (char *)s;
-	if (n == 0)
-		return ;
-	while (n > 0)
-	{
-		*b = '\0';
-		n--;
-		b++;
-	}
+	if (key == 53)
+		ft_echap(game);
+	return (0);
 }

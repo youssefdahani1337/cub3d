@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 07:37:36 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/03 10:46:47 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/06 19:25:50 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	add_color(t_game *game, t_lexer *lexer)
 	if (!lexer->c)
 		printerror("No color set", NULL);
 	if (c == 'F')
-		set_color(&game->f_color, lexer);
+		set_color(&game->color.f, lexer);
 	if (c == 'C')
-		set_color(&game->c_color, lexer);
+		set_color(&game->color.c, lexer);
 }
 
 void	set_color(long *color, t_lexer *lexer)
