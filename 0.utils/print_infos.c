@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 08:34:52 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/06 20:03:56 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/08 20:27:08 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,20 @@ void	print_map(char **map, int x, int y)
 	}
 }
 
+void	print_ray(t_game *game)
+{
+	t_ray	*ray;
+	
+	ray = &game->ray;
+	printf("Ray x = %f, y = %f\n", ray->x, ray->y);
+	printf("Ray i = %d, j = %d\n", ray->i, ray->j);
+	printf("theta = %f\n", ray->theta);
+	printf("Ray x = %f, y = %f\n", ray->x, ray->y);
+	printf("Ray %f\n", ray->r);
+	printf("DST %f\n", ray->dist_p);
+	
+}
+
 void	print_infos(t_game *game)
 {
 	int	j;
@@ -47,6 +61,7 @@ void	print_infos(t_game *game)
 	printf("texture EA:  %s\n", game->txt.ea.img);
 	printf("MAP len [%ld]\n", game->map.r_len);
 	printf("MAP width [%ld]\n", game->map.c_len);
-	
 	print_map(game->map.m, -1, -1);
+	print_ray(game);
+	
 }

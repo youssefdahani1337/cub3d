@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/16 08:04:57 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/09 11:14:36 by yodahani         ###   ########.fr       */
+/*   Created: 2023/08/08 12:45:58 by yodahani          #+#    #+#             */
+/*   Updated: 2023/08/08 18:29:42 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#ifndef RAYCASTING_H
+# define RAYCASTING_H
 
-int	main(int ac, char **av)
-{
-	t_game	*game;
-	
-	if (ac != 2)
-		printerror("Enter just 1 argument", NULL);
-	game = parsing(av[1]);
-	init_game(game);
-	//ft_raycasting(game);
-	hook_mlx(game);
-	mlx_loop(game->mlx.mlx);
-	return (0);
-}
+# include "utils.h"
+
+void	ft_raycasting(t_game *game);
+double	ft_ray_x(t_game *game, float thet);
+double 	ft_ray_y(t_game *game, float thet);
+void	draw_cell(t_game *game, int cell, int *start);
+void	draw_walls(t_game *game, int cell, int *start);
+void	draw_floor(t_game *game, int cell, int start);
+void	best_ray(t_game *game);
+void	calc_dst(t_game *game);
+#endif

@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/16 08:04:57 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/09 11:14:36 by yodahani         ###   ########.fr       */
+/*   Created: 2023/08/08 10:36:08 by yodahani          #+#    #+#             */
+/*   Updated: 2023/08/08 12:57:13 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/utils.h"
 
-int	main(int ac, char **av)
+float	ft_rad(float deg)
 {
-	t_game	*game;
-	
-	if (ac != 2)
-		printerror("Enter just 1 argument", NULL);
-	game = parsing(av[1]);
-	init_game(game);
-	//ft_raycasting(game);
-	hook_mlx(game);
-	mlx_loop(game->mlx.mlx);
-	return (0);
+	return  (deg * M_PI / 180);
 }

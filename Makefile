@@ -9,14 +9,16 @@ CFLAGS=-Wall -Wextra -Werror -fsanitize=address -g3
 RM=rm -rf
 NAME=cub3D
 LIBFT=-Llibft -lft
-UTILS=printerror.c ft_malloc.c strjoin_char.c substr_line.c print_infos.c free_game.c
+UTILS=printerror.c ft_malloc.c strjoin_char.c substr_line.c print_infos.c free_game.c ray_utils.c mlx_utils.c
 PARS = parser.c check_name.c check_infos.c lexer.c textures.c colors.c parse_map.c map_addons.c fill_map.c check_map.c
-SRCS=cub3D.c init.c exit_btn.c ft_key.c
+RAYC = raycasting.c ray_x.c ray_y.c draw.c
+SRCS=cub3D.c init.c exit_btn.c ft_key.c hooks.c moves.c
 
 
 OBJS = $(call convert_to_objs , sources, $(SRCS)) \
 	$(call convert_to_objs , 0.utils, $(UTILS)) \
-	$(call convert_to_objs , parsing, $(PARS))
+	$(call convert_to_objs , parsing, $(PARS)) \
+	$(call convert_to_objs , raycasting, $(RAYC)) \
 
 all:libft $(NAME)
 	@echo "DONE"
