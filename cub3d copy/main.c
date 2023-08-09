@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 07:49:14 by yakhay            #+#    #+#             */
-/*   Updated: 2023/08/09 09:54:11 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:34:52 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int motion(t_test *test)
 	    mov_down(test);
     if (test->rot_rhit == 1)
     {
-    test->theta -= 4;
+        test->theta -= 4;
         if (test->theta < 0)
             test->theta = 360.0 + test->theta;
     }
@@ -197,10 +197,12 @@ int main(int ac, char **av)
     char *line;
     char *map_line;
     t_test *T;
+   
     T = malloc(sizeof(t_test));
      T->imag = malloc(sizeof(t_img));
     (void)ac;
     int fd = open(av[1], O_RDWR);
+    
     T->theta = 270;
     T->px = 98;
     T->py = 98;
@@ -229,10 +231,10 @@ int main(int ac, char **av)
     T->imag->ptr = mlx_new_image(T->mlx_ptr, width, height);
 	T->imag->addr = mlx_get_data_addr(T->imag->ptr, &T->imag->bits_per_pixel,
 		&T->imag->line_length, &T->imag->endian);
-    ft_ray(T);
-   // mlx_hook(T->mlx_win, 2, 0, key_hook, T);
-  //  mlx_hook(T->mlx_win, 2, 0,presse_key, T);
-//	mlx_hook(T->mlx_win, 3, 0,relesse_key, T);
-//	mlx_loop_hook(T->mlx_ptr, motion, T);
+   //ft_ray(T);
+   //mlx_hook(T->mlx_win, 2, 0, key_hook, T);
+    mlx_hook(T->mlx_win, 2, 0,presse_key, T);
+    mlx_hook(T->mlx_win, 3, 0,relesse_key, T);
+    mlx_loop_hook(T->mlx_ptr, motion, T);
     mlx_loop(T->mlx_ptr);
 }

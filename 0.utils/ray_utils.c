@@ -6,13 +6,13 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 10:36:08 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/08 12:57:13 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/09 11:36:32 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/utils.h"
 
-float	ft_rad(float deg)
+double	ft_rad(float deg)
 {
 	return  (deg * M_PI / 180);
 }

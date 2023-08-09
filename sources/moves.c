@@ -5,21 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/08 11:27:49 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/09 11:18:00 by yodahani         ###   ########.fr       */
+/*   Created: 2023/08/09 13:04:33 by yodahani          #+#    #+#             */
+/*   Updated: 2023/08/09 16:20:26 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include  "../include/cub3D.h"
 
-int is_can_move(t_game *game)
+int is_can_move(t_test *test)
 {
-    double x ;
-    double y ;
-
-	x = ft_ray_x(game, game->ray.theta);
-	y = ft_ray_y(game, game->ray.theta);
-	if (x > y)
+    double x = ft_ray_x(test,test->theta);
+    double y = ft_ray_y(test,test->theta);
+    if (x > y)
         x = y;
     if (x - 5 > 20)
         return (5);
@@ -28,70 +25,73 @@ int is_can_move(t_game *game)
     return (-1);
 }
 
-void  mov_up(t_game *game)
+void  mov_up(t_test *test)
 {
-    float	t_rad;
-    int		move;
-	float	x;
-	float	y;
+    float t_rad;
 
-	// diffrence between up and down 
-	move = is_can_move(game);
-    if (move == -1)
+    if (is_can_move(test) == -1)
         return ;
-    x = game->ray.x;
-	y = game->ray.y;
-	t_rad = ft_rad(game->ray.theta);
-	x += cos(t_rad) * SPEED_MOVE;
-	y -= sin(t_rad) * SPEED_MOVE;
-     if (game->map.m[(int)y/TILE_S][(int)x/TILE_S] != '1')
+
+    float x =test->px,y =test->py;
+	t_rad = M_PI * test->theta / 180;
+	x += cos(t_rad) * 5;
+	y -= sin(t_rad) * 5;
+    //printf("%f\n",test->theta);
+     if (test->map[(int)y/64][(int)x/64] != '1')
     {
-        game->ray.i = 1;
-        game->ray.x = x;
-        game->ray.y = y;
+        test->i = 1;
+        test->px = x;
+        test->py = y;
     }
 }
-
-void mov_down(t_game *game)
+void mov_down(t_test *test)
 {
-    float	t_rad;
-	float	x;
-	float	y;
-
-
-    x = game->ray.x;
-	y = game->ray.y;
-	t_rad = ft_rad(game->ray.theta);
-	x -= cos(t_rad) * SPEED_MOVE;
-	y += sin(t_rad) * SPEED_MOVE;
-    if (game->map.m[(int) y /TILE_S][(int) x / TILE_S] != '1')
-    {
-        game->ray.i = 1;
-        game->ray.x = x;
-        game->ray.y = y;
-    }
-}
-
-void	mov_side(t_game *game, char dir)
-{
-	float t_rad;
-	float	x;
-	float	y;
+    float t_rad;
+    float x =test->px,y =test->py;
     
-	t_rad = 0.0;
-	x = game->ray.x;
-	y = game->ray.y;
-	if (dir == LEFT)
-		t_rad =ft_rad(game->ray.theta + 90);
-	else
-		t_rad =ft_rad(game->ray.theta  - 90);
-	x += cos(t_rad) * SPEED_ROT;
-	y -= sin(t_rad) * SPEED_ROT;
-    if (game->map.m[(int)y/TILE_S][(int)x/TILE_S] != '1')
+    if (is_can_move(test) == -1)
+        return ;
+	t_rad = M_PI * test->theta/ 180;
+	x -= cos(t_rad) * 5;
+	y += sin(t_rad) * 5;
+     if (test->map[(int)y/64][(int)x/64] != '1')
     {
-    	game->ray.i = 1;
-        game->ray.x = x;
-        game->ray.y = y;
+        test->i = 1;
+        test->px = x;
+        test->py = y;
+    }
+
+}
+void mov_rhit(t_test *test)
+{
+    float t_rad;
+
+    if (is_can_move(test) == -1)
+        return ;
+    float x =test->px,y =test->py;
+	t_rad = M_PI * (test->theta - 90) / 180;
+	x += cos(t_rad) * 5;
+	y -= sin(t_rad) * 5;
+    if (test->map[(int)y/64][(int)x/64] != '1')
+    {
+        test->i = 1;
+        test->px = x;
+        test->py = y;
     }
 }
-
+void mov_left(t_test *test)
+{
+    float t_rad;
+    float x =test->px ,y =test->py;
+     if (is_can_move(test) == -1)
+        return ;
+	t_rad = M_PI * (test->theta + 90) / 180;
+	x += cos(t_rad) * 5;
+	y -= sin(t_rad) * 5;
+    if (test->map[(int)y/64][(int)x/64] != '1')
+    {
+        test->i = 1;
+        test->px = x;
+        test->py = y;
+    }
+}

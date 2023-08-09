@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 11:21:37 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/08 19:59:31 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:53:54 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,44 @@ typedef struct s_ray
 	char	dir;
 } t_ray;
 
+typedef struct s_img
+{
+	char	dir;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		heigth;
+	char	*addr;
+	void	*ptr;
+	struct s_img *next;
+} t_img;
+typedef struct s_test
+{
+    int m_r;
+	int m_l;
+	int m_u;
+	int m_d;
+	int rot_rhit;
+	int rot_left;
+    int i;
+    int j;
+    float theta;
+    float x;
+    float y;
+    int ox;
+    int px;
+    int py;
+    void *mlx_ptr;
+    void *mlx_win;
+    t_img *imag;
+    char **map;
+    int new_move;
+	int r_len;
+	int	c_len;
+}    t_test;
+
+
 typedef struct s_game
 {
 	t_mlx						mlx;
@@ -111,7 +149,8 @@ typedef struct s_game
 	t_texture					txt;
 	t_map						map;
 	t_data_txt					screen;
-	
+	t_test						*test;
 }	t_game;
+
 
 #endif

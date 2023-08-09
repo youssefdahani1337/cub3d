@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 11:53:01 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/09 11:14:18 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:46:18 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 void	init_game(t_game *game)
 {
-	game->mlx.mlx = mlx_init();
-	init_textures(game);
-	game->mlx.win = mlx_new_window(game->mlx.mlx, WIDTH, HEIGHT, "cub3D");
-	myget_data_adrr(game, &game->screen);
+	game->test->mlx_ptr = mlx_init();
+	game->test->mlx_win = mlx_new_window(game->test->mlx_ptr,  WIDTH, HEIGHT, "cub3D");
+	
+	//init_textures(game);
+//	myget_data_adrr(game, &game->screen);
 	init_raycast(game);
 	init_speed(game);
+	//game->test->imag->ptr = mlx_new_image(game->test->mlx_ptr, WIDTH, WIDTH);
+	//game->test->imag->addr = mlx_get_data_addr(game->test->mlx_ptr, &game->test->imag->bits_per_pixel,
+		//&game->test->imag->line_length, &game->test->imag->endian);
+	game->test->map = game->map.m;
 }
 void	init_raycast(t_game *game)
 {
@@ -27,31 +32,33 @@ void	init_raycast(t_game *game)
 	
 	d = game->p.v;
 	if (d == 'E')
-		game->ray.theta = 0;
+		game->test->theta = 0;
 	else if (d == 'N')
-		game->ray.theta = 90;
+		game->test->theta = 90;
 	else if (d == 'W')
-		game->ray.theta = 180;
+		game->test->theta = 180;
 	else if (d == 'S')
-		game->ray.theta = 270;
-	 game->ray.x = (game->p.x * TILE_S) + (TILE_S / 2);
-	 game->ray.y = (game->p.y * TILE_S) + (TILE_S / 2);
+		game->test->theta = 270;
+	 game->test->py = (game->p.x * TILE_S) + (TILE_S / 2);
+	 game->test->px = (game->p.y * TILE_S) + (TILE_S / 2);
 	//game->ray.x = 98;
 	//game->ray.y = 98;
-	game->ray.i =  0;
-	game->ray.j =  1;
-	game->ray.ox = 0;
+	game->test->i =  0;
+	game->test->j =  1;
+	game->test->ox = 0;
 	game->ray.dist_p = (WIDTH / 2) / tan(ft_rad(FOV / 2));
+	game->test->r_len = game->map.r_len;
+	game->test->c_len = game->map.c_len;
 }
 
 void	init_speed(t_game *game)
 {
-	game->speed.m_r = 0;
-	game->speed.m_l = 0;
-	game->speed.m_u = 0;
-	game->speed.m_d = 0;
-	game->speed.rot_rhit = 0;
-	game->speed.rot_left = 0;
+	game->test->m_r = 0;
+	game->test->m_l = 0;
+	game->test->m_u = 0;
+	game->test->m_d = 0;
+	game->test->rot_rhit = 0;
+	game->test->rot_left = 0;
 }
 
 void	init_textures(t_game *game)
