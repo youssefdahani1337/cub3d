@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 13:06:09 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/09 16:17:28 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:56:13 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ int check_to_berk_nigax(t_test *info, float x1, float y)
 		return (0);
 	if (info->map[i][j] == '1')
 		return (0);
-	else
+		else
 		info->ox++;
+
 	return (1);
 }
 

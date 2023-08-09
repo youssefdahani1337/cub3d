@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 11:21:37 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/09 15:53:54 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:50:48 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct s_ray
     int 	i;
     int 	j;
     float 	theta;
+
     float 	x;
     float 	y;
 	float 	alpha;
@@ -126,6 +127,8 @@ typedef struct s_test
     float theta;
     float x;
     float y;
+	float	d_x;
+	float	d_y;
     int ox;
     int px;
     int py;
