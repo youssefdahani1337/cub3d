@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakhay <yakhay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 13:03:49 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/09 14:58:31 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:22:27 by yakhay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,20 @@ int motion(t_test *test)
 	    mov_down(test);
     if (test->rot_rhit == 1)
     {
-    test->theta -= 4;
+		test->i = 1;
+		test->theta -= 4;
         if (test->theta < 0)
             test->theta = 360.0 + test->theta;
     }
     if (test->rot_left == 1)
     {
+		test->i = 1;
 		test->theta += 4;
         if (test->theta >= 360)
             test->theta = test->theta - 360.0;
     }
-   ft_ray(test);
+	//if (test->i == 1)
+   		ft_ray(test);
+	test->i = 0;
 	return (0);
 }

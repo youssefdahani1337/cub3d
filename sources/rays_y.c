@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays_y.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakhay <yakhay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 13:07:32 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/09 16:17:04 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/10 12:28:13 by yakhay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,19 @@ int check_to_berk_niga(t_test *info, float y1, float x)
 	return (1);
 }
 
+double	petay(float x, int y1)
+{
+	double r;
+	r =sqrt(pow(x,2) + pow(y1,2));
+    if (r < 0)
+        return (2147483647);
+return (r);
+}
 double ft_ray_y(t_test *info, float thet)
 {
-    double r;
     float y1;
     float x;
+
     info->j = 1;
     while (1)
     {
@@ -71,8 +79,5 @@ double ft_ray_y(t_test *info, float thet)
 				break;
        }
     }
-    r = sqrt(pow(x,2) + pow(y1,2));
-    if (r < 0)
-        r = 2147483647;
-    return (r);
+	return (petay(x, y1));
 }

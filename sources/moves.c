@@ -3,40 +3,68 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakhay <yakhay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 13:04:33 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/09 16:20:26 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:23:14 by yakhay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "../include/cub3D.h"
 
-int is_can_move(t_test *test)
+int is_can_move(t_test *test,float t_rad, char c)
 {
-    double x = ft_ray_x(test,test->theta);
-    double y = ft_ray_y(test,test->theta);
-    if (x > y)
-        x = y;
-    if (x - 5 > 20)
-        return (5);
-    else if (x > 20)
-        return (x - 20);
-    return (-1);
+    int i = 0;
+    float x;
+    float y;
+
+    x =test->px;
+    y =test->py;
+    if ((int)(y/64) >= test->r_len || (int)(x / 64) >= test->c_len)
+        return (-1);
+    if (c == '+')
+    {
+        while (i <= 10)
+        {
+            //printf("i==%d\n",i);
+            x += cos(t_rad) * i;
+	        y -= sin(t_rad) * i;
+            if (test->map[(int)y/64][(int)x/64] == '1')
+                return (-1);
+                i++;
+        }
+    }
+    else
+    {
+         while (i <= 10)
+        {
+            //printf("i==%d\n",i);
+            x -= cos(t_rad) * i;
+	        y += sin(t_rad) * i;
+            if (test->map[(int)y/64][(int)x/64] == '1')
+                return (-1);
+            i++;
+        }
+    }
+    //dprintf("i==%d x==%d y==%d p==%c\n",i,(int)x/64,(int)y/64,test->map[(int)y/64][(int)x/64]);
+    return 0;
 }
 
 void  mov_up(t_test *test)
 {
     float t_rad;
+    float x;
+    float y;
 
-    if (is_can_move(test) == -1)
-        return ;
+    x =test->px;
+    y =test->py;
 
-    float x =test->px,y =test->py;
+
 	t_rad = M_PI * test->theta / 180;
+    if (is_can_move(test,t_rad,'+') == -1)
+        return ;
 	x += cos(t_rad) * 5;
 	y -= sin(t_rad) * 5;
-    //printf("%f\n",test->theta);
      if (test->map[(int)y/64][(int)x/64] != '1')
     {
         test->i = 1;
@@ -47,11 +75,15 @@ void  mov_up(t_test *test)
 void mov_down(t_test *test)
 {
     float t_rad;
-    float x =test->px,y =test->py;
-    
-    if (is_can_move(test) == -1)
-        return ;
+    float x;
+    float y;
+
+    x =test->px;
+    y =test->py;
+
 	t_rad = M_PI * test->theta/ 180;
+    if (is_can_move(test,t_rad,'-') == -1)
+        return ;
 	x -= cos(t_rad) * 5;
 	y += sin(t_rad) * 5;
      if (test->map[(int)y/64][(int)x/64] != '1')
@@ -65,11 +97,22 @@ void mov_down(t_test *test)
 void mov_rhit(t_test *test)
 {
     float t_rad;
+    float x;
+    float y;
+    float new_theta;
 
-    if (is_can_move(test) == -1)
+    if (test->theta < 0)
+            test->theta = 360.0 + test->theta;
+    if (test->theta >= 360)
+        test->theta = test->theta - 360.0;
+    new_theta = test->theta - 90.0;
+    if (new_theta < 0)
+        new_theta = 360.0 + new_theta;
+    x =test->px;
+    y =test->py;
+	t_rad = M_PI * new_theta / 180;
+    if (is_can_move(test,t_rad,'+') == -1)
         return ;
-    float x =test->px,y =test->py;
-	t_rad = M_PI * (test->theta - 90) / 180;
 	x += cos(t_rad) * 5;
 	y -= sin(t_rad) * 5;
     if (test->map[(int)y/64][(int)x/64] != '1')
@@ -82,10 +125,22 @@ void mov_rhit(t_test *test)
 void mov_left(t_test *test)
 {
     float t_rad;
-    float x =test->px ,y =test->py;
-     if (is_can_move(test) == -1)
+    float x;
+    float y;
+    float new_theta;
+
+    if (test->theta < 0)
+            test->theta = 360.0 + test->theta;
+    if (test->theta >= 360)
+        test->theta = test->theta - 360.0;
+    new_theta = test->theta + 90;
+    if (new_theta >= 360)
+        new_theta = new_theta - 360.0;
+    x =test->px;
+    y =test->py;
+	t_rad = M_PI * (new_theta) / 180;
+    if (is_can_move(test,t_rad,'+') == -1)
         return ;
-	t_rad = M_PI * (test->theta + 90) / 180;
 	x += cos(t_rad) * 5;
 	y -= sin(t_rad) * 5;
     if (test->map[(int)y/64][(int)x/64] != '1')

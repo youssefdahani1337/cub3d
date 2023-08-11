@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakhay <yakhay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 08:04:57 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/09 16:01:37 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/10 14:05:45 by yakhay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,10 @@ int	main(int ac, char **av)
 	test->imag->ptr = mlx_new_image(test->mlx_ptr, WIDTH, HEIGHT );
 	test->imag->addr = mlx_get_data_addr(test->imag->ptr, &test->imag->bits_per_pixel,
 		&test->imag->line_length, &test->imag->endian);
-	//ft_ray(test);
-	//mlx_hook(game->test->mlx_win, 2, 0, key_hook, game->test);
-
 	test->py = (game->p.x * TILE_S) + (TILE_S / 2);
 	test->px = (game->p.y * TILE_S) + (TILE_S / 2);
 	test->map = game->map.m;
-	printf("px = %d, py = %d\n", test->px, test->py);
-	printf("theta = %f\n", test->theta);
-	printf("r_len = %d\n", test->r_len);
-	printf("c_len = %d\n", test->c_len);
+	ft_ray(test);
   	mlx_hook(game->test->mlx_win, 2, 0,presse_key, test);
 	mlx_hook(game->test->mlx_win, 3, 0,relesse_key, test);
 	mlx_loop_hook(game->test->mlx_ptr, motion, test);

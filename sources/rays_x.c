@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays_x.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yakhay <yakhay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 13:06:09 by yodahani          #+#    #+#             */
-/*   Updated: 2023/08/09 16:56:13 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/08/11 11:03:42 by yakhay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,16 @@ int check_to_berk_nigax(t_test *info, float x1, float y)
 
 	return (1);
 }
-
+double	peta(float x1, int y)
+{
+	double r;
+	r =sqrt(pow(x1,2) + pow(y,2));
+    if (r < 0)
+        return (2147483647);
+return (r);
+}
 double ft_ray_x(t_test *info,float thet)
 {
-    double r;
 	float x1;
     float y;
 
@@ -62,8 +68,7 @@ double ft_ray_x(t_test *info,float thet)
         {
             y = info->py - (floor((info->py / 64) - info->ox + 1) * 64);
             x1 = y / tan(thet * M_PI/180);
-			if (check_to_berk_posix(info, x1, y) == 0)
-				break ;
+			if (check_to_berk_posix(info, x1, y) == 0) break ;
         }
         else
         {
@@ -73,10 +78,5 @@ double ft_ray_x(t_test *info,float thet)
 				break;
         }
     }
-    r =sqrt(pow(x1,2) + pow(y,2));
-    if (r < 0)
-	{
-        return (2147483647);
-    }
-    return (r);
+    return (peta(x1, y));
 }
